@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080808">
+<title>ConfessSomeRotten</title>
+<style>
+:root{--bg:#080808;--card:#141414;--text:#f5f0e5;--gold:#ffd36a;--muted:#a8a095}
+body.light{--bg:#fff9ed;--card:#fff;--text:#241b0c;--gold:#a66b00;--muted:#756b5d}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif;transition:background .3s,color .3s}
+header{text-align:center;padding:24px 16px;border-bottom:1px solid #d8a83e55;box-shadow:0 2px 22px #d8a83e18}
+h1{color:var(--gold);text-shadow:0 0 15px #ffc34d66;margin:5px 0}
+header p,.small{color:var(--muted)}
+header p{font-size:13px}
+button,select,textarea,input{font:inherit}
+button{cursor:pointer}
+.theme{background:transparent;color:var(--gold);border:1px solid var(--gold);border-radius:20px;padding:9px 14px;margin-top:10px}
+main{width:min(600px,100%);padding:16px;margin:auto}
+.panel,.post{background:var(--card);border:1px solid #d8a83e35;border-radius:15px;padding:17px;margin-bottom:18px;box-shadow:0 4px 20px #0002}
+h2{color:var(--gold);font-size:18px;margin-top:0}
+textarea,input,select{display:block;width:100%;margin:10px 0;padding:12px;color:var(--text);background:var(--bg);border:1px solid #d8a83e66;border-radius:9px}
+textarea{min-height:110px;resize:vertical}
+.gold-button{width:100%;padding:12px;border:none;border-radius:9px;background:var(--gold);color:#171006;font-weight:bold;box-shadow:0 0 14px #d8a83e30}
+button:disabled{opacity:.65;cursor:not-allowed}
+.small{font-size:12px;line-height:1.5}
+.post .author{color:var(--gold);font-weight:bold}
+.post img{width:100%;max-height:400px;object-fit:contain;border-radius:10px;margin-top:10px}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:25px}
+</style>
+</head>
+<body>
+<header>
+  <h1>ConfessSomeRotten</h1>
+  <p>Secrets. Feelings. Words left unsaid.</p>
+  <button class="theme" id="themeButton" type="button">☀️ Switch Theme</button>
+</header>
+<main>
+  <section class="panel">
+    <h2>🔐 Account</h2>
+    <p class="small">Login and signup will be enabled after connecting Firebase.</p>
+    <input type="email" placeholder="Your email" disabled>
+    <input type="password" placeholder="Password" disabled>
+    <button class="gold-button" disabled>Login / Sign up — Coming soon</button>
+  </section>
+  <section class="panel">
+    <h2>✍️ Share a confession</h2>
+    <textarea id="message" maxlength="1500" placeholder="Write what you've never said aloud..."></textarea>
+    <select id="identity" aria-label="Posting identity">
+      <option value="Anonymous">🕵️ Post anonymously</option>
+      <option value="nickname">👤 Show a nickname</option>
+    </select>
+    <input id="nickname" maxlength="30" placeholder="Choose a nickname" style="display:none">
+    <label class="small" for="picture">🖼️ Add an image (optional)</label>
+    <input type="file" id="picture" accept="image/*">
+    <p class="small">Preview only: posts are not published to other visitors yet. Avoid uploading private photos or identifying information.</p>
+    <button class="gold-button" id="previewButton" type="button">Preview Confession ✨</button>
+  </section>
+  <section>
+    <h2>🌍 Public Confessions</h2>
+    <p class="small">The public feed will be activated after connecting a database.</p>
+    <div id="feed" aria-live="polite"></div>
+  </section>
+</main>
+<footer>ConfessSomeRotten · Your words, your choice 🖤</footer>
+<script>
+const themeButton = document.getElementById("themeButton");
+themeButton.addEventListener("click", () => {
+  document.body.classList.toggle("light");
+  localStorage.setItem("confessTheme", document.body.classList.contains("light") ? "light" : "dark");
+});
+if (localStorage.getItem("confessTheme") === "light") document.body.classList.add("light");
+
+document.getElementById("identity").addEventListener("change", function () {
+  document.getElementById("nickname").style.display = this.value === "nickname" ? "block" : "none";
+});
+
+document.getElementById("previewButton").addEventListener("click", () => {
+  const message = document.getElementById("message").value.trim();
+  const identity = document.getElementById("identity").value;
+  const nickname = document.getElementById("nickname").value.trim();
+  const picture = document.getElementById("picture").files[0];
+
+  if (!message && !picture) return alert("Write a confession or choose an image first.");
+  if (identity === "nickname" && !nickname) return alert("Please choose a nickname.");
+  if (picture && !picture.type.startsWith("image/")) return alert("Please choose an image file.");
+  if (picture && picture.size > 2 * 1024 * 1024) return alert("For this preview, choose an image under 2 MB.");
+
+  const post = document.createElement("article");
+  post.className = "post";
+  const author = document.createElement("div");
+  author.className = "author";
+  author.textContent = identity === "Anonymous" ? "🕵️ Anonymous" : "👤 " + nickname;
+  post.appendChild(author);
+
+  const content = document.createElement("p");
+  content.style.whiteSpace = "pre-wrap";
+  content.textContent = message;
+  post.appendChild(content);
+
+  if (picture) {
+    const img = document.createElement("img");
+    img.alt = "Image attached to confession";
+    img.src = URL.createObjectURL(picture);
+    post.appendChild(img);
+  }
+  const note = document.createElement("p");
+  note.className = "small";
+  note.textContent = "Local preview — not published online.";
+  post.appendChild(note);
+  document.getElementById("feed").prepend(post);
+  document.getElementById("message").value = "";
+  document.getElementById("picture").value = "";
+});
+</script>
+</body>
+</html>
