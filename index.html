@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -557,7 +558,7 @@ Welcome to the most confidential investigation in human history.
 
 <div class="page-navigation">
 <a href="https://lehribapii-dot.github.io/Aakashkeatankeadi/#memes">← PREVIOUS PAGE</a>
-<a href="page3.html">NEXT PAGE →</a>
+<a href="https://lehribapii-dot.github.io/Confesssomerotten/">NEXT PAGE →</a>
 </div>
 
 <footer>
@@ -571,7 +572,7 @@ Welcome to the most confidential investigation in human history.
 <!-- BACKGROUND MUSIC -->
 
 <audio id="bgMusic" loop preload="auto">
-<source src="music/theme.mp3" type="audio/mpeg">
+<source src="(128k)(1).m4a" type="audio/mp4">
 </audio>
 
 <div class="music-player">
@@ -580,11 +581,13 @@ Welcome to the most confidential investigation in human history.
 </div>
 
 <script>
+
 /* INTERROGATION */
 
 function showAnswer(number){
 const answer=document.getElementById("answer"+number);
-answer.style.display=answer.style.display==="block"?"none":"block";
+answer.style.display=
+answer.style.display==="block"?"none":"block";
 }
 
 /* EXCUSE GENERATOR */
@@ -628,6 +631,7 @@ document.getElementById("voteResult").innerHTML=
 "You have already voted in this browser! 😂";
 return;
 }
+
 votes[type]++;
 localStorage.setItem("aadiVotes",JSON.stringify(votes));
 localStorage.setItem("aadiUserVoted","yes");
@@ -661,11 +665,14 @@ volume.addEventListener("input",function(){
 music.volume=Number(this.value);
 });
 
-/* MUSIC BUTTON STATUS */
+music.addEventListener("play",()=>{
+musicBtn.innerText="⏸ PAUSE";
+});
 
-music.addEventListener("ended",()=>{
+music.addEventListener("pause",()=>{
 musicBtn.innerText="▶ MUSIC";
 });
+
 </script>
 
 </body>
