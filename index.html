@@ -3,116 +3,670 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080808">
-<title>ConfessSomeRotten</title>
+<title>AADI: THE SECRET FILES 🔐</title>
+
 <style>
-:root{--bg:#080808;--card:#141414;--text:#f5f0e5;--gold:#ffd36a;--muted:#a8a095}
-body.light{--bg:#fff9ed;--card:#fff;--text:#241b0c;--gold:#a66b00;--muted:#756b5d}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif;transition:background .3s,color .3s}
-header{text-align:center;padding:24px 16px;border-bottom:1px solid #d8a83e55;box-shadow:0 2px 22px #d8a83e18}
-h1{color:var(--gold);text-shadow:0 0 15px #ffc34d66;margin:5px 0}
-header p,.small{color:var(--muted)}
-header p{font-size:13px}
-button,select,textarea,input{font:inherit}
-button{cursor:pointer}
-.theme{background:transparent;color:var(--gold);border:1px solid var(--gold);border-radius:20px;padding:9px 14px;margin-top:10px}
-main{width:min(600px,100%);padding:16px;margin:auto}
-.panel,.post{background:var(--card);border:1px solid #d8a83e35;border-radius:15px;padding:17px;margin-bottom:18px;box-shadow:0 4px 20px #0002}
-h2{color:var(--gold);font-size:18px;margin-top:0}
-textarea,input,select{display:block;width:100%;margin:10px 0;padding:12px;color:var(--text);background:var(--bg);border:1px solid #d8a83e66;border-radius:9px}
-textarea{min-height:110px;resize:vertical}
-.gold-button{width:100%;padding:12px;border:none;border-radius:9px;background:var(--gold);color:#171006;font-weight:bold;box-shadow:0 0 14px #d8a83e30}
-button:disabled{opacity:.65;cursor:not-allowed}
-.small{font-size:12px;line-height:1.5}
-.post .author{color:var(--gold);font-weight:bold}
-.post img{width:100%;max-height:400px;object-fit:contain;border-radius:10px;margin-top:10px}
-footer{text-align:center;color:var(--muted);font-size:12px;padding:25px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+:root{
+--gold:#ffd700;
+--gold2:#b8860b;
+--bg:#050505;
+--card:#111;
+--text:#fff8dc;
+}
+body{
+background:var(--bg);
+color:var(--text);
+font-family:Arial,sans-serif;
+overflow-x:hidden;
+}
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background:
+radial-gradient(circle at 10% 20%,#ff00ff18,transparent 30%),
+radial-gradient(circle at 90% 30%,#00ffff15,transparent 30%),
+radial-gradient(circle at 50% 90%,#ffd70015,transparent 35%);
+pointer-events:none;
+z-index:-1;
+}
+.rgb-line{
+height:3px;
+background:linear-gradient(90deg,red,orange,yellow,lime,cyan,blue,magenta,red);
+background-size:300% 100%;
+animation:rgb 5s linear infinite;
+}
+@keyframes rgb{
+0%{background-position:0%}
+100%{background-position:300%}
+}
+header{
+position:sticky;
+top:0;
+z-index:100;
+background:#080808ed;
+backdrop-filter:blur(15px);
+border-bottom:1px solid var(--gold);
+padding:17px 6%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+header h2{
+color:var(--gold);
+letter-spacing:2px;
+font-size:20px;
+text-shadow:0 0 15px #ffd700;
+}
+button{
+cursor:pointer;
+border:none;
+background:linear-gradient(135deg,#ffd700,#a87900);
+color:#080808;
+padding:11px 17px;
+border-radius:6px;
+font-weight:bold;
+transition:.3s;
+}
+button:hover{
+transform:translateY(-3px);
+box-shadow:0 0 20px #ffd70090;
+}
+nav{
+background:#101010;
+padding:15px 8px;
+text-align:center;
+border-bottom:1px solid #332800;
+}
+nav a{
+display:inline-block;
+color:#ddd;
+text-decoration:none;
+margin:7px;
+font-size:12px;
+letter-spacing:1px;
+}
+nav a:hover{color:var(--gold)}
+.hero{
+min-height:540px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:80px 20px;
+background:linear-gradient(#000c,#000e),url('20261105_131957.jpg') center/cover;
+}
+.hero-tag{
+color:var(--gold);
+letter-spacing:5px;
+font-size:12px;
+font-weight:bold;
+}
+.hero h1{
+font-size:clamp(38px,8vw,85px);
+margin:25px 0;
+color:var(--gold);
+text-shadow:0 0 10px #ffd700,0 0 30px #b8860b;
+}
+.hero p{max-width:650px;color:#ccc;line-height:1.9}
+.hero-btn{margin-top:30px}
+section{padding:65px 7%}
+.section-title{
+color:var(--gold);
+font-size:27px;
+margin-bottom:28px;
+border-left:4px solid var(--gold);
+padding-left:15px;
+text-shadow:0 0 12px #ffd70060;
+}
+.card{
+position:relative;
+background:linear-gradient(145deg,#171717,#090909);
+padding:23px;
+border-radius:12px;
+margin-bottom:20px;
+border:1px solid #594600;
+line-height:1.9;
+overflow:hidden;
+}
+.card h3{color:var(--gold);margin-bottom:12px}
+.card p{color:#ccc}
+.gold{color:var(--gold);font-weight:bold}
+.badge{
+display:inline-block;
+padding:5px 12px;
+background:#332900;
+color:var(--gold);
+border:1px solid #a88600;
+border-radius:20px;
+font-size:11px;
+margin-bottom:12px;
+}
+.rgb-card{
+border:1px solid transparent;
+background:
+linear-gradient(#111,#111) padding-box,
+linear-gradient(120deg,#ffd700,#ff00ff,#00ffff,#ffd700) border-box;
+background-size:100% 100%,300% 300%;
+animation:borderGlow 6s linear infinite;
+}
+@keyframes borderGlow{
+0%{background-position:0 0,0% 50%}
+100%{background-position:0 0,300% 50%}
+}
+.dossier-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+}
+.dossier-item{
+background:#101010;
+padding:17px;
+border:1px solid #514000;
+border-radius:8px;
+}
+.dossier-item small{color:#aaa}
+.dossier-item h3{color:var(--gold);margin-top:8px}
+.gallery{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:18px;
+}
+.gallery img{
+width:100%;
+height:260px;
+object-fit:cover;
+border-radius:8px;
+}
+video,iframe{
+width:100%;
+aspect-ratio:16/9;
+border:0;
+border-radius:8px;
+background:#000;
+}
+.caption{color:#aaa;font-size:13px;padding-top:10px}
+.classified{
+text-align:center;
+padding:30px;
+border:2px dashed var(--gold);
+background:#171000;
+border-radius:10px;
+animation:pulse 2s infinite;
+}
+@keyframes pulse{
+0%,100%{box-shadow:0 0 5px #ffd70030}
+50%{box-shadow:0 0 25px #ffd70090}
+}
+.question{
+background:#181818;
+padding:18px;
+margin:12px 0;
+border-left:3px solid var(--gold);
+border-radius:5px;
+}
+.answer{color:var(--gold);margin-top:10px;display:none}
+.generator{
+text-align:center;
+padding:35px 20px;
+background:#171000;
+border:1px solid var(--gold);
+border-radius:12px;
+}
+#excuse{
+color:var(--gold);
+font-size:20px;
+margin:25px 0;
+min-height:55px;
+line-height:1.6;
+}
+.news{
+padding:18px;
+margin:12px 0;
+background:#151515;
+border-left:4px solid var(--gold);
+line-height:1.7;
+}
+.news span{color:var(--gold);font-size:11px;font-weight:bold}
+.awards{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+}
+.award{
+background:linear-gradient(135deg,#241d00,#111);
+border:1px solid #806500;
+padding:25px 15px;
+text-align:center;
+border-radius:10px;
+}
+.trophy{font-size:38px}
+.award h3{color:var(--gold);margin:12px 0}
+.letter{
+background:#171000;
+border-left:5px solid var(--gold);
+padding:25px;
+line-height:2.1;
+border-radius:8px;
+}
+.letter h3{color:var(--gold);margin-bottom:18px}
+.vote-box{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:15px;
+margin-top:20px;
+}
+.vote-result{
+margin-top:25px;
+color:var(--gold);
+font-size:18px;
+text-align:center;
+}
+.vote-note{
+font-size:12px;
+color:#999;
+margin-top:12px;
+text-align:center;
+}
+.verdict{
+text-align:center;
+padding:35px 20px;
+border:2px solid var(--gold);
+border-radius:12px;
+background:linear-gradient(145deg,#211900,#080808);
+}
+.verdict h1{
+color:var(--gold);
+font-size:clamp(30px,7vw,55px);
+margin:20px 0;
+text-shadow:0 0 20px #ffd700;
+}
+.music-player{
+position:fixed;
+bottom:20px;
+left:15px;
+z-index:999;
+background:#101010;
+border:1px solid var(--gold);
+padding:12px;
+border-radius:12px;
+box-shadow:0 0 15px #ffd70070;
+display:flex;
+align-items:center;
+gap:9px;
+}
+.music-player button{padding:10px;font-size:12px}
+.music-player input{width:75px;accent-color:var(--gold)}
+.page-navigation{
+display:flex;
+justify-content:space-between;
+gap:15px;
+padding:30px 7%;
+}
+.page-navigation a{
+text-decoration:none;
+background:#171000;
+color:var(--gold);
+border:1px solid var(--gold);
+padding:15px 22px;
+border-radius:8px;
+font-weight:bold;
+transition:.3s;
+}
+.page-navigation a:hover{
+background:var(--gold);
+color:#000;
+box-shadow:0 0 20px #ffd70080;
+}
+footer{
+text-align:center;
+background:#080808;
+padding:40px 15px;
+color:#aaa;
+line-height:2;
+border-top:1px solid var(--gold);
+}
+footer h2{color:var(--gold)}
+@media(max-width:650px){
+header h2{font-size:15px}
+section{padding:45px 5%}
+.dossier-grid,.gallery,.awards{grid-template-columns:1fr}
+.gallery img{height:280px}
+.hero{min-height:450px}
+nav a{font-size:11px;margin:5px}
+.music-player{bottom:12px;left:8px;padding:8px}
+.music-player input{width:55px}
+.page-navigation{padding:25px 5%}
+.page-navigation a{padding:12px;font-size:12px}
+}
 </style>
 </head>
+
 <body>
+
+<div class="rgb-line"></div>
+
 <header>
-  <h1>ConfessSomeRotten</h1>
-  <p>Secrets. Feelings. Words left unsaid.</p>
-  <button class="theme" id="themeButton" type="button">☀️ Switch Theme</button>
+<h2>AADI FILES 🔐</h2>
+<button onclick="location.href='https://lehribapii-dot.github.io/Aakashkeatankeadi/#memes'">← BACK</button>
 </header>
-<main>
-  <section class="panel">
-    <h2>🔐 Account</h2>
-    <p class="small">Login and signup will be enabled after connecting Firebase.</p>
-    <input type="email" placeholder="Your email" disabled>
-    <input type="password" placeholder="Password" disabled>
-    <button class="gold-button" disabled>Login / Sign up — Coming soon</button>
-  </section>
-  <section class="panel">
-    <h2>✍️ Share a confession</h2>
-    <textarea id="message" maxlength="1500" placeholder="Write what you've never said aloud..."></textarea>
-    <select id="identity" aria-label="Posting identity">
-      <option value="Anonymous">🕵️ Post anonymously</option>
-      <option value="nickname">👤 Show a nickname</option>
-    </select>
-    <input id="nickname" maxlength="30" placeholder="Choose a nickname" style="display:none">
-    <label class="small" for="picture">🖼️ Add an image (optional)</label>
-    <input type="file" id="picture" accept="image/*">
-    <p class="small">Preview only: posts are not published to other visitors yet. Avoid uploading private photos or identifying information.</p>
-    <button class="gold-button" id="previewButton" type="button">Preview Confession ✨</button>
-  </section>
-  <section>
-    <h2>🌍 Public Confessions</h2>
-    <p class="small">The public feed will be activated after connecting a database.</p>
-    <div id="feed" aria-live="polite"></div>
-  </section>
-</main>
-<footer>ConfessSomeRotten · Your words, your choice 🖤</footer>
+
+<nav>
+<a href="#dossier">DOSSIER</a>
+<a href="#evidence">EVIDENCE</a>
+<a href="#interrogation">INTERROGATION</a>
+<a href="#news">NEWS</a>
+<a href="#awards">AWARDS</a>
+<a href="#letter">LETTER</a>
+<a href="#voting">VOTING</a>
+<a href="#court">COURTROOM</a>
+</nav>
+
+<div class="hero">
+<div class="hero-tag">RESTRICTED ACCESS • CLASSIFIED DOCUMENTS</div>
+<h1>AADI: THE SECRET FILES</h1>
+<p>
+The first investigation was just the beginning.
+Behind every innocent smile lies another unnecessary excuse.
+Welcome to the most confidential investigation in human history.
+</p>
+<a href="#dossier"><button class="hero-btn">🔐 OPEN SECRET FILES</button></a>
+</div>
+
+<section id="dossier">
+<h2 class="section-title">🔐 01. TOP SECRET DOSSIER</h2>
+<div class="classified">
+<h2 class="gold">⚠ CLASSIFIED INFORMATION ⚠</h2>
+<p>Unauthorized seriousness detected. Proceed at your own risk.</p>
+</div>
+<br>
+<div class="dossier-grid">
+<div class="dossier-item"><small>SUBJECT NAME</small><h3>AADI</h3></div>
+<div class="dossier-item"><small>CODENAME</small><h3>MAKAN CHOR</h3></div>
+<div class="dossier-item"><small>INTELLIGENCE LEVEL</small><h3>UNDER REVIEW</h3></div>
+<div class="dossier-item"><small>DRAMA LEVEL</small><h3>9999%</h3></div>
+<div class="dossier-item"><small>KNOWN TALENT</small><h3>EXCUSE GENERATION</h3></div>
+<div class="dossier-item"><small>PRODUCTIVITY</small><h3>404 NOT FOUND</h3></div>
+<div class="dossier-item"><small>PUBLIC REPUTATION</small><h3>QUESTIONABLE</h3></div>
+<div class="dossier-item"><small>CASE STATUS</small><h3>STILL ACTIVE</h3></div>
+</div>
+<br>
+<div class="card rgb-card">
+<h3>OFFICIAL INTELLIGENCE REPORT</h3>
+<p>The subject has been observed displaying unusual levels of confidence, unpredictable behaviour and extraordinary commitment to unnecessary bakchodi.</p>
+<p>Investigators believe that the subject possesses a rare ability to turn a simple situation into a full-length documentary.</p>
+<p class="gold">WARNING: Never ask Aadi for a serious explanation.</p>
+</div>
+</section>
+
+<section id="evidence">
+<h2 class="section-title">📸 02. THE EVIDENCE ROOM</h2>
+<div class="card rgb-card">
+<h3>PHOTOGRAPHIC EVIDENCE</h3>
+<div class="gallery">
+<div><img src="20261105_131957.jpg" alt="Aadi evidence 1"><p class="caption">Evidence 001: The mysterious suspect.</p></div>
+<div><img src="20261105_135306.jpg" alt="Aadi evidence 2"><p class="caption">Evidence 002: Suspicious expression.</p></div>
+<div><img src="20261105_144851.jpg" alt="Aadi evidence 3"><p class="caption">Evidence 003: Legendary pose.</p></div>
+<div><img src="evidence4.jpg" alt="Additional evidence"><p class="caption">Evidence 004: Additional classified photograph.</p></div>
+</div>
+</div>
+
+<div class="card">
+<h3>🎥 VIDEO EVIDENCE 001</h3>
+<video controls preload="metadata">
+<source src="20261105_135351.mp4" type="video/mp4">
+</video>
+<p class="caption">Confidential investigation footage.</p>
+</div>
+
+<div class="card">
+<h3>🎥 VIDEO EVIDENCE 002</h3>
+<video controls preload="metadata">
+<source src="VID-20261105-WA0023.mp4" type="video/mp4">
+</video>
+<p class="caption">Unexplained activities of the suspect.</p>
+</div>
+
+<div class="card">
+<h3>📺 SPECIAL YOUTUBE EVIDENCE</h3>
+<iframe src="https://www.youtube-nocookie.com/embed/hgXI5gr9hQI" title="Aadi investigation video" allowfullscreen></iframe>
+</div>
+</section>
+
+<section id="interrogation">
+<h2 class="section-title">🕵️ 03. INTERROGATION ROOM</h2>
+<div class="card">
+<h3>OFFICIAL QUESTIONING SESSION</h3>
+<p>Investigators have prepared some extremely difficult questions.</p>
+
+<div class="question"><b>Q1. Why are you always busy?</b><br><br><button onclick="showAnswer(1)">REVEAL ANSWER</button><p class="answer" id="answer1">Ans: Busy doing absolutely nothing.</p></div>
+<div class="question"><b>Q2. Where is your productivity?</b><br><br><button onclick="showAnswer(2)">REVEAL ANSWER</button><p class="answer" id="answer2">Ans: Currently missing. Last seen in childhood.</p></div>
+<div class="question"><b>Q3. Do you ever accept your mistakes?</b><br><br><button onclick="showAnswer(3)">REVEAL ANSWER</button><p class="answer" id="answer3">Ans: The investigation is still waiting for that historic moment.</p></div>
+<div class="question"><b>Q4. What is your biggest achievement?</b><br><br><button onclick="showAnswer(4)">REVEAL ANSWER</button><p class="answer" id="answer4">Ans: Making simple situations unnecessarily complicated.</p></div>
+<div class="question"><b>Q5. Are you innocent?</b><br><br><button onclick="showAnswer(5)">REVEAL ANSWER</button><p class="answer" id="answer5">Ans: Even Aadi doesn't know.</p></div>
+</div>
+
+<div class="generator">
+<h2 class="gold">🎭 AADI EXCUSE GENERATOR</h2>
+<p>Generate a random excuse from the suspect's legendary database.</p>
+<div id="excuse">Press the button to investigate.</div>
+<button onclick="generateExcuse()">GENERATE EXCUSE 🔄</button>
+</div>
+</section>
+
+<section id="news">
+<h2 class="section-title">📰 04. BREAKING NEWS</h2>
+<div class="news"><span>BREAKING NEWS 001</span><h3>AADI AGAIN CAUGHT DOING ABSOLUTELY NOTHING!</h3><p>Sources confirm that the suspect has once again defeated productivity.</p></div>
+<div class="news"><span>BREAKING NEWS 002</span><h3>SCIENTISTS FAIL TO UNDERSTAND AADI'S LOGIC!</h3><p>Research has been suspended due to excessive confusion.</p></div>
+<div class="news"><span>BREAKING NEWS 003</span><h3>MAKAN CHOR SPOTTED STEALING EVERYONE'S PEACE!</h3><p>Friends demand immediate compensation in the form of entertainment.</p></div>
+<div class="news"><span>BREAKING NEWS 004</span><h3>EXCUSE GENERATOR RUNS OUT OF STORAGE!</h3><p>Experts say the subject's creativity is impossible to measure.</p></div>
+</section>
+
+<section id="awards">
+<h2 class="section-title">🏆 05. NATIONAL AWARDS</h2>
+<div class="awards">
+<div class="award"><div class="trophy">🏆</div><h3>LULIKATWA OF THE YEAR</h3><p>For outstanding achievements in nonsense.</p></div>
+<div class="award"><div class="trophy">🥇</div><h3>DRAMA KING</h3><p>For turning small things into national emergencies.</p></div>
+<div class="award"><div class="trophy">🎖️</div><h3>EXCUSE GENERATOR</h3><p>For unlimited creativity in explanations.</p></div>
+<div class="award"><div class="trophy">👑</div><h3>MAKAN CHOR</h3><p>For stealing the peace of the entire friend group.</p></div>
+<div class="award"><div class="trophy">😂</div><h3>BAKCHODI LEGEND</h3><p>For maintaining extraordinary comedy levels.</p></div>
+<div class="award"><div class="trophy">💀</div><h3>LIFETIME ACHIEVEMENT</h3><p>For never disappointing the investigation team.</p></div>
+</div>
+</section>
+
+<section id="letter">
+<h2 class="section-title">📜 06. THE CONFIDENTIAL HINDI LETTER</h2>
+<div class="letter">
+<h3>प्रिय श्रीमान Aadi उर्फ मकान चोर जी,</h3>
+<p>
+सादर प्रणाम!
+<br><br>
+हमें यह बताते हुए अत्यंत हर्ष हो रहा है कि आपकी महान और ऐतिहासिक हरकतों का रिकॉर्ड अब राष्ट्रीय अभिलेखागार में सुरक्षित रखने की तैयारी की जा रही है।
+<br><br>
+आप कोई साधारण इंसान नहीं हैं। आप एक चलता-फिरता आश्चर्य हैं। आपको देखकर कभी-कभी तो विज्ञान के महान वैज्ञानिक भी अपनी डिग्रियां वापस करने की सोचने लगते होंगे।
+<br><br>
+आपकी सबसे बड़ी विशेषता यह है कि आप किसी भी सामान्य परिस्थिति को कुछ ही मिनटों में अंतरराष्ट्रीय समस्या बना सकते हैं। जहां दूसरे लोग समाधान ढूंढते हैं, वहां आप नया बवाल पैदा करने की अद्भुत क्षमता रखते हैं।
+<br><br>
+आपकी बुद्धिमत्ता का स्तर इतना रहस्यमयी है कि Google भी आपको समझने के लिए पहले अपना सर्वर Restart करता होगा।
+<br><br>
+आपकी बहानेबाजी के सामने बड़े-बड़े वकील भी पानी भरते हैं। आपका एक बहाना सुनने के बाद तो पूरा दोस्त समूह सोचता है कि भाई, ये कहानी लिख कौन रहा है?
+<br><br>
+आपको देखकर ऐसा लगता है कि भगवान ने आपको बनाते समय थोड़ा ज्यादा ही प्रयोग कर लिया था और फिर सोचा होगा — चलो, इसे दोस्तों के मनोरंजन के लिए भेज देते हैं।
+<br><br>
+आपकी हरकतों को देखते हुए राष्ट्रीय बेकार जांच आयोग ने आपको कुछ विशेष सम्मान देने का निर्णय लिया है:
+<br><br>
+<b class="gold">
+1. लुलिकटवा ऑफ द ईयर।<br>
+2. मकान चोर सम्मान।<br>
+3. बहानेबाजी रत्न पुरस्कार।<br>
+4. बिना वजह ड्रामा फैलाने का राष्ट्रीय सम्मान।<br>
+5. दोस्त मंडली का स्थायी सिरदर्द पुरस्कार।
+</b>
+<br><br>
+हालांकि, इन सभी उपलब्धियों के बावजूद हम यह स्वीकार करते हैं कि आपके बिना दोस्ती की महफिल अधूरी है।
+<br><br>
+आप चाहे जितनी bakchodi कर लें, लेकिन दोस्ती में आपका स्थान हमेशा सुरक्षित रहेगा।
+<br><br>
+अतः आपको निर्देश दिया जाता है कि आगे भी इसी प्रकार अपनी महान हरकतों से हमारा मनोरंजन करते रहें।
+<br><br>
+आपका अत्यंत परेशान लेकिन शुभचिंतक,
+<br>
+<b class="gold">
+राष्ट्रीय बेकार जांच आयोग 😂<br>
+विभाग: अनावश्यक जांच एवं मनोरंजन मंत्रालय
+</b>
+</p>
+</div>
+</section>
+
+<section id="voting">
+<h2 class="section-title">🗳️ 07. PUBLIC OPINION</h2>
+<div class="card rgb-card" style="text-align:center">
+<h3>IS AADI INNOCENT OR GUILTY?</h3>
+<p>The public has the right to express its opinion.</p>
+<div class="vote-box">
+<button onclick="vote('innocent')">😇 INNOCENT</button>
+<button onclick="vote('guilty')">😂 GUILTY</button>
+</div>
+<div class="vote-result" id="voteResult">Cast your vote!</div>
+<p class="vote-note">Demo voting: results are saved only in this browser.</p>
+</div>
+</section>
+
+<section id="court">
+<h2 class="section-title">⚖️ 08. THE FINAL COURTROOM</h2>
+<div class="verdict">
+<div style="font-size:55px">⚖️</div>
+<h2 class="gold">THE PEOPLE VS AADI</h2>
+<p>After examining the available evidence, questioning witnesses and reviewing the suspect's extraordinary behaviour...</p>
+<h1>GUILTY! 😂</h1>
+<p>Guilty of excessive bakchodi, unnecessary drama, unlimited excuses and stealing everyone's peace.</p>
+<br>
+<h3 class="gold">SENTENCE:</h3>
+<p>Must continue entertaining the friend group for life. No appeal allowed in the court of friendship.</p>
+<br>
+<div class="badge">CASE CLOSED? ABSOLUTELY NOT.</div>
+</div>
+</section>
+
+<!-- PAGE NAVIGATION -->
+
+<div class="page-navigation">
+<a href="https://lehribapii-dot.github.io/Aakashkeatankeadi/#memes">← PREVIOUS PAGE</a>
+<a href="page3.html">NEXT PAGE →</a>
+</div>
+
+<footer>
+<h2>AADI: THE SECRET FILES 🔐</h2>
+<p>A completely unnecessary investigation.<br>Powered by friendship, golden memories and unlimited bakchodi.</p>
+<br>
+<p>© 2026 AADI DOCUMENTARY</p>
+<small>This is a fictional comedy parody.</small>
+</footer>
+
+<!-- BACKGROUND MUSIC -->
+
+<audio id="bgMusic" loop preload="auto">
+<source src="music/theme.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-player">
+<button id="musicBtn" onclick="toggleMusic()">▶ MUSIC</button>
+<input type="range" id="volume" min="0" max="1" step="0.05" value="0.5" title="Volume">
+</div>
+
 <script>
-const themeButton = document.getElementById("themeButton");
-themeButton.addEventListener("click", () => {
-  document.body.classList.toggle("light");
-  localStorage.setItem("confessTheme", document.body.classList.contains("light") ? "light" : "dark");
+/* INTERROGATION */
+
+function showAnswer(number){
+const answer=document.getElementById("answer"+number);
+answer.style.display=answer.style.display==="block"?"none":"block";
+}
+
+/* EXCUSE GENERATOR */
+
+const excuses=[
+"Bro, network problem tha! 📶",
+"Kal pakka karunga. Promise! 😂",
+"Main mentally present tha, physically nahi.",
+"Time hi kharab chal raha hai.",
+"System update ho raha hai. Please wait.",
+"Mujhe kisi ne bataya hi nahi!",
+"Main plan bana raha tha, execute nahi.",
+"Ye sab ek misunderstanding hai!",
+"Battery low thi, dimaag ki bhi. 🔋",
+"Investigation team mujhe target kar rahi hai!"
+];
+
+function generateExcuse(){
+const random=Math.floor(Math.random()*excuses.length);
+document.getElementById("excuse").innerText=excuses[random];
+}
+
+/* DEMO PUBLIC VOTING */
+
+let votes={innocent:0,guilty:0};
+
+try{
+const saved=JSON.parse(localStorage.getItem("aadiVotes"));
+if(saved)votes=saved;
+}catch(e){}
+
+function updateVotes(){
+document.getElementById("voteResult").innerHTML=
+"😇 Innocent: "+votes.innocent+
+"<br>😂 Guilty: "+votes.guilty;
+}
+
+function vote(type){
+if(localStorage.getItem("aadiUserVoted")){
+document.getElementById("voteResult").innerHTML=
+"You have already voted in this browser! 😂";
+return;
+}
+votes[type]++;
+localStorage.setItem("aadiVotes",JSON.stringify(votes));
+localStorage.setItem("aadiUserVoted","yes");
+updateVotes();
+}
+
+updateVotes();
+
+/* BACKGROUND MUSIC */
+
+const music=document.getElementById("bgMusic");
+const musicBtn=document.getElementById("musicBtn");
+const volume=document.getElementById("volume");
+
+music.volume=0.5;
+
+function toggleMusic(){
+if(music.paused){
+music.play().then(()=>{
+musicBtn.innerText="⏸ PAUSE";
+}).catch(()=>{
+musicBtn.innerText="▶ TRY AGAIN";
 });
-if (localStorage.getItem("confessTheme") === "light") document.body.classList.add("light");
+}else{
+music.pause();
+musicBtn.innerText="▶ MUSIC";
+}
+}
 
-document.getElementById("identity").addEventListener("change", function () {
-  document.getElementById("nickname").style.display = this.value === "nickname" ? "block" : "none";
+volume.addEventListener("input",function(){
+music.volume=Number(this.value);
 });
 
-document.getElementById("previewButton").addEventListener("click", () => {
-  const message = document.getElementById("message").value.trim();
-  const identity = document.getElementById("identity").value;
-  const nickname = document.getElementById("nickname").value.trim();
-  const picture = document.getElementById("picture").files[0];
+/* MUSIC BUTTON STATUS */
 
-  if (!message && !picture) return alert("Write a confession or choose an image first.");
-  if (identity === "nickname" && !nickname) return alert("Please choose a nickname.");
-  if (picture && !picture.type.startsWith("image/")) return alert("Please choose an image file.");
-  if (picture && picture.size > 2 * 1024 * 1024) return alert("For this preview, choose an image under 2 MB.");
-
-  const post = document.createElement("article");
-  post.className = "post";
-  const author = document.createElement("div");
-  author.className = "author";
-  author.textContent = identity === "Anonymous" ? "🕵️ Anonymous" : "👤 " + nickname;
-  post.appendChild(author);
-
-  const content = document.createElement("p");
-  content.style.whiteSpace = "pre-wrap";
-  content.textContent = message;
-  post.appendChild(content);
-
-  if (picture) {
-    const img = document.createElement("img");
-    img.alt = "Image attached to confession";
-    img.src = URL.createObjectURL(picture);
-    post.appendChild(img);
-  }
-  const note = document.createElement("p");
-  note.className = "small";
-  note.textContent = "Local preview — not published online.";
-  post.appendChild(note);
-  document.getElementById("feed").prepend(post);
-  document.getElementById("message").value = "";
-  document.getElementById("picture").value = "";
+music.addEventListener("ended",()=>{
+musicBtn.innerText="▶ MUSIC";
 });
 </script>
+
 </body>
 </html>
